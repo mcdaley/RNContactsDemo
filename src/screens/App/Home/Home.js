@@ -7,8 +7,10 @@ import {
   Text,
   Button,
   TouchableOpacity,
+  PermissionsAndroid,
 }                             from 'react-native'
 import Icon                   from 'react-native-vector-icons/Ionicons'
+import Contacts               from 'react-native-contacts'
 
 import styles                 from './styles'
 
@@ -28,10 +30,44 @@ class HomeScreen extends Component {
     }
   }
 
+  /**
+   * Test getting the contacts
+   */
+  getContacts = () => {
+    Contacts.getAll( (err, contacts) => {
+      if(err) {
+        throw err
+      }
+      console.log('[INFO] Retrieve contacts')
+      return contacts
+    })
+  }
+
+  getContactsAndroid = () => {
+    PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
+      {
+        'title': 'Contacts',
+        'message': 'This app would like to view your contacts.'
+      }
+    ).then(() => {
+      Contacts.getAll((err, contacts) => {
+        if (err === 'denied'){
+          // error
+        } else {
+          console.log('[INFO] Retrieved contacts on android= ', contacts)
+          return contacts
+        }
+      })
+    })
+  }
+
   render() {
+    let contact = this.getContactsAndroid()
+
     return (
       <View style={styles.container}>
-        <Text style={styles.headerOne}>Home Screen</Text>
+        <Text style={styles.headerOne}>Contacts</Text>
         <Icon name='ios-home' size={48} color='blue' />
         <Button
           title   = 'Go to Details'
