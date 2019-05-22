@@ -38,7 +38,7 @@ class HomeScreen extends Component {
       if(err) {
         throw err
       }
-      console.log('[INFO] Retrieve contacts')
+      console.log('[INFO] Retrieve contacts= ', contacts)
       return contacts
     })
   }
@@ -63,7 +63,7 @@ class HomeScreen extends Component {
   }
 
   render() {
-    let contact = this.getContactsAndroid()
+    let contact = this.getContacts()
 
     return (
       <View style={styles.container}>
