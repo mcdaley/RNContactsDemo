@@ -28,6 +28,7 @@ the contact's details (e.g., email, mobile number, address,...)
 As a User, I want to be able to delete a contact, so that I can
 remove old contacts.
 * Verify I can remove contact
+**[DONE]**
 
 ### Search Contact
 As a User, I want to be able to search for a contact, that I can
@@ -35,11 +36,13 @@ use an existing contact instead of adding a duplicate new contact
 * Verify that I can type the contact's name and it returns a list of
 matching contacts
 * Verify that I can select a contact from the search results
+**[DONE]**
 
 ### Try fusejs.io
 [fusejs.io](https://fusejs.io) is a lightweight javascript fuzzy search
 library that would let me search on other fields besides first and last
 name such as email, phone, company, ....
+**[DONE]**
 
 ## Layout
 Typically, an App's logic will be built in 3 separate functionalities that

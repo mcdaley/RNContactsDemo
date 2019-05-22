@@ -14,7 +14,7 @@ import createAnimatedSwitchNavigator from 'react-navigation-animated-switch'
 import Icon                 from 'react-native-vector-icons/Ionicons'
 
 import HomeScreen           from './src/screens/app/Home/Home'
-import TopicsScreen         from './src/screens/app/Topics/Topics'
+import SearchScreen         from './src/screens/app/Search/Search'
 import DetailsScreen        from './src/screens/app/Details/Details'
 import ListScreen           from './src/screens/app/List/List'
 import SettingsScreen       from './src/screens/settings/Settings/Settings'
@@ -91,9 +91,9 @@ HomeStack.navigationOptions = ({ navigation }) => {
   return { tabBarVisible }
 }
 
-const TopicsStack    = createStackNavigator(
+const SearchStack    = createStackNavigator(
   {
-    Topics:    TopicsScreen,
+    Search:    SearchScreen,
     List:     ListScreen,
   },
   {
@@ -105,7 +105,7 @@ const TopicsStack    = createStackNavigator(
   }
 )
 
-TopicsStack.navigationOptions = ({navigation}) => {
+SearchStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true
   if(navigation.state.index > 0) {
     tabBarVisible = false
@@ -128,7 +128,7 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
   if(routeName === 'Home') {
     iconName = 'ios-home'
   }
-  else if(routeName === 'Topics') {
+  else if(routeName === 'Search') {
     iconName = `ios-desktop`
   }
 
@@ -139,7 +139,7 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 const TabNavigator  = createBottomTabNavigator(
   {
     Home:     { screen: HomeStack },
-    Topics:   { screen: TopicsStack },
+    Search:   { screen: SearchStack },
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
