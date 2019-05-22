@@ -50,7 +50,7 @@ class HomeScreen extends Component {
   async componentWillMount() {
     if(Platform.OS === 'android') {
       PermissionsAndroid.request(
-        PermissionAndroid.PERMISSIONS.READ_CONTACTS,
+        PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
         {
           'title':    'Contacts',
           'message':  'RNContacts Demo would like to view your contacts'

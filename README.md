@@ -7,7 +7,7 @@ phone contacts.
 ### List Contacts
 As a User, I want to see a list of all the contacts on my phone
 * Verify I can view the first 10 contacts returned
-[DONE]
+**[DONE]**
 
 ### Create Contacts
 As a User, I want to create a contact, so that I can add a new
@@ -16,12 +16,18 @@ appointment to my calendar.
 * Verify I can enter the fields in the **Add Contact Form**
 * Verify error handling, assuming that I'll need to enter a name
 
-### Edit Contact
+### Edit Contact 
 As a User, I want to be able to edit a contact, so that I can update
 the contact's details (e.g., email, mobile number, address,...)
 * Verify I can open the contact in the phone's **Contact Phone**
 * Verify I can edit the contact's details
 * Verify the changes are saved in the phone's contacts.
+**[DONE]**
+
+### Delete Contact
+As a User, I want to be able to delete a contact, so that I can
+remove old contacts.
+* Verify I can remove contact
 
 ### Search Contact
 As a User, I want to be able to search for a contact, that I can
