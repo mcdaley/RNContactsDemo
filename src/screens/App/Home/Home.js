@@ -141,16 +141,56 @@ class HomeScreen extends Component {
   }
 
   /**
+   * Delete the contact
+   * @param {*} contact
+   */
+  onClickDeleteContact = (contact) => {
+    console.log('[INFO] Delete contact= ', contact)
+
+    Contacts.deleteContact(contact, (err, recordID) => {
+      if (err) {
+        console.log('[ERROR] Failed to delete contact= ', err)
+        throw err;
+      }
+      else {
+        // Deleted contact and update the state
+        if(recordID) {
+          let contacts = this.state.contacts.filter( (contact) => {
+            if(contact.recordID != recordID) {
+              return contact
+            }
+          })
+
+          this.setState({
+            contacts,
+          })
+        }
+      }
+    })
+  }
+
+  /**
    * Render a single contact's first name and last name. If both are blank
    * then render the contact's company.
    */
   _renderContact = ({item}) => {
     return (
-      <TouchableOpacity onPress={() => this.onClickContact(item)}>
         <View style={styles.contactOverview}>
-          <Text> {`${item.givenName} ${item.familyName}`}</Text>
+          <View style={styles.contactLink}>
+            <TouchableOpacity onPress={() => this.onClickContact(item)}>
+              <Text style={styles.contactLabel}> 
+                {`${item.givenName} ${item.familyName}`}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <Icon
+              name    = 'ios-close-circle-outline'
+              style   = {styles.deleteContactIcon}
+              onPress = {() => this.onClickDeleteContact(item)}
+            />
+          </View>
         </View>
-      </TouchableOpacity>
     )
   }
 

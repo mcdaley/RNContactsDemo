@@ -27,10 +27,22 @@ const styles = StyleSheet.create({
     paddingBottom:        5,
   },
   contactOverview: {
+    flexDirection:        'row',
     margin:               10,
-    fontSize:             18,
     borderBottomWidth:    1,
     borderBottomColor:    border,
+  },
+  contactLink: {
+    flex:                 10,
+  },
+  contactLabel: {
+    fontSize:             18,
+    flex:                 1,
+  },
+  deleteContactIcon: {
+    flex:                 1,
+    fontSize:             16,
+    color:                '#CCCCCC',
   }
 })
 
