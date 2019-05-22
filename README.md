@@ -2,6 +2,39 @@
 An examle React Native app that demonstrates how access a user's 
 phone contacts.
 
+## Requirements
+
+### List Contacts
+As a User, I want to see a list of all the contacts on my phone
+* Verify I can view the first 10 contacts returned
+[DONE]
+
+### Create Contacts
+As a User, I want to create a contact, so that I can add a new
+appointment to my calendar.
+* Verify I can launch the phone's **Add Contact Form**
+* Verify I can enter the fields in the **Add Contact Form**
+* Verify error handling, assuming that I'll need to enter a name
+
+### Edit Contact
+As a User, I want to be able to edit a contact, so that I can update
+the contact's details (e.g., email, mobile number, address,...)
+* Verify I can open the contact in the phone's **Contact Phone**
+* Verify I can edit the contact's details
+* Verify the changes are saved in the phone's contacts.
+
+### Search Contact
+As a User, I want to be able to search for a contact, that I can
+use an existing contact instead of adding a duplicate new contact
+* Verify that I can type the contact's name and it returns a list of
+matching contacts
+* Verify that I can select a contact from the search results
+
+### Try fusejs.io
+[fusejs.io](https://fusejs.io) is a lightweight javascript fuzzy search
+library that would let me search on other fields besides first and last
+name such as email, phone, company, ....
+
 ## Layout
 Typically, an App's logic will be built in 3 separate functionalities that
 are not dependent on each other. The App here uses the SwitchNavigation
@@ -35,15 +68,4 @@ can click the **Done** button to navigate back to the __App__ navigation.
 The sections of the app are broken down into **stacked** screens, so 
 users can drill down to the details of each section.
 
-## To Do
-[x] * Centralize styling
-* Header Formats
-  - Search Window and link to url/uri.
-* Add Modal screen
-* Do I need to create a higher order component to manage signed-in users?
-
-## To Do
-* Figure out how to add the default header to the createBottomTabNavigator
-  section. I have added the header styling to the createStackNavigation, which
-  is OK for now.
 

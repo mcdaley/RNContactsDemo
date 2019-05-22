@@ -12,7 +12,14 @@ import styles                 from './styles'
 
 class DetailsScreen extends Component {
   static navigationOptions = { 
-    title:        'Details',
+    title:        'Contact Details',
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      contact: props.navigation.getParam('contact')
+    }
   }
 
   render() {

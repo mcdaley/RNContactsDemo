@@ -4,7 +4,8 @@
 import { StyleSheet } from 'react-native'
 
 import {
-  headerOne,
+  headerOne, 
+  border,
 }                     from '../../../styles/index'
 
 /**
@@ -13,16 +14,23 @@ import {
 const styles = StyleSheet.create({
   container: {
     flex:                 1,
-    justifyContent:       'center',
-    alignItems:           'center',
+    flexDirection:        'column',
+    alignItems:           'stretch',
   },
   headerOne: {
     ...headerOne,
   },
   headerIcon: {
-    fontSize:           28,
-    color:              '#fff',
-    margin:             10,
+    fontSize:             28,
+    color:                '#fff',
+    margin:               10,
+    paddingBottom:        5,
+  },
+  contactOverview: {
+    margin:               10,
+    fontSize:             18,
+    borderBottomWidth:    1,
+    borderBottomColor:    border,
   }
 })
 
