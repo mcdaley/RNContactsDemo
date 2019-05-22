@@ -1,15 +1,6 @@
-# RNavigationDemo
-An example React Native app that demonstrates how to use React Navigation
-to setup the layout for an app. The app provides a basic layout with tabs
-and also a settings section for managing a user's profile.
-
-The layout can be used to quickly get started building a new app with
-basic core layout, so you can focus on building the app logic instead of 
-doing all of the grunt work of setting up the app.
-
-[Add some snapshots of the app]
-
-[Add directions for getting up and ready]
+# RNContactsDemo
+An examle React Native app that demonstrates how access a user's 
+phone contacts.
 
 ## Layout
 Typically, an App's logic will be built in 3 separate functionalities that

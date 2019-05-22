@@ -13,7 +13,7 @@ import Icon                   from 'react-native-vector-icons/Ionicons'
 import styles                 from './styles'
 
 /**
- * Home screen for the RNavigationDemo app. User can navigate to settings
+ * Home screen for the RNContactsDemo app. User can navigate to settings
  * by clicking on the gear icon.
  */
 class HomeScreen extends Component {

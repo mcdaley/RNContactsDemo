@@ -1,4 +1,4 @@
-package com.rnavigationdemo;
+package com.rncontactsdemo;
 
 import android.app.Application;
 
