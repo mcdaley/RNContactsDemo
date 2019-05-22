@@ -38,6 +38,7 @@ class HomeScreen extends Component {
    */
   constructor(props) {
     super(props)
+
     this.state = {
       contacts: [],
     }
@@ -84,8 +85,58 @@ class HomeScreen extends Component {
    */
   onClickContact = (contact) => {
     console.log('[INFO] Selected contact id= ', contact.givenName)
-    this.props.navigation.push('Details', {
-      contact: contact,
+    this.openContactPicker(contact)
+  }
+
+  openContactPicker = (contact) => {
+    console.log('[INFO] Open contact form for ', contact)
+    Contacts.openExistingContact(contact, (err, modifiedContact) => {
+      if(err) {
+        console.warn('[ERROR] Failed to open contact form= ', err)
+      }
+      else {
+        if(modifiedContact) {
+          console.log('[INFO]: Updated contact= ', modifiedContact)
+          this.handleUpdateContact(modifiedContact)
+        }
+      }
+    })
+  }
+
+  handleUpdateContact(contact) {
+    console.log('[INFO] Handle the contact update= ', contact)
+    let contacts = this.state.contacts.map( (person) => {
+      if(person.recordID !== contact.recordID) {
+        return person
+      }
+      else {
+        return contact
+      }
+    })
+    this.setState({
+      contacts,
+    })
+  }
+
+  /**
+   * Open the create contact form and let user fill in the fields
+   */
+  onClickCreateContact = () => {
+    console.log('[INFO] Create a new contact')
+
+    Contacts.openContactForm({}, (err, contact) => {
+      if(err) {
+        console.log('[ERROR] Failed to create contact= ', err)
+        throw err
+      }
+      
+      // Update state if contact was saved.
+      if(contact) {
+        console.log('[INFO]: Created new contact= ', contact)
+        this.setState({
+          contacts: this.state.contacts.concat(contact)
+        })
+      }
     })
   }
 
@@ -115,6 +166,13 @@ class HomeScreen extends Component {
           keyExtractor        = {(item, index) => item.recordID}
           renderItem          = {this._renderContact}
         />
+        <View style={{margin: 20}}>
+          <Button 
+            title   = 'Create New Contact'
+            style   = {styles.button}
+            onPress = {this.onClickCreateContact}
+          />
+        </View>
       </View>
     )
   }
