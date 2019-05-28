@@ -25,17 +25,6 @@ import styles                 from './styles'
  * by clicking on the gear icon.
  */
 class FindScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      headerTitle: 'Find',
-      headerLeft:  (
-        <TouchableOpacity onPress = { () => navigation.navigate('UserSettings')}>
-          <Icon name='ios-settings' style={styles.headerIcon} />
-        </TouchableOpacity>
-      )
-    }
-  }
-
   /**
    * 
    * @param {*} props 

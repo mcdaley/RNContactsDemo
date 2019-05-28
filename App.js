@@ -17,6 +17,7 @@ import HomeScreen           from './src/screens/app/Home/Home'
 import SearchScreen         from './src/screens/app/Search/Search'
 import DetailsScreen        from './src/screens/app/Details/Details'
 import ListScreen           from './src/screens/app/List/List'
+import LookupScreen         from './src/screens/app/Lookup/Lookup'
 import FindScreen           from './src/screens/app/Find/Find'
 import ContactScreen        from './src/screens/app/Contact/Contact'
 import SettingsScreen       from './src/screens/settings/Settings/Settings'
@@ -117,8 +118,9 @@ SearchStack.navigationOptions = ({navigation}) => {
   return { tabBarVisible }
 }
 
-const FindStack    = createStackNavigator(
+const FindStack = createStackNavigator(
   {
+    Lookup:   LookupScreen,
     Find:     FindScreen,
     Contact:  ContactScreen,
   },
