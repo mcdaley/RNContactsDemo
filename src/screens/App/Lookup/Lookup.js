@@ -34,15 +34,32 @@ class LookupScreen extends Component {
     }
   }
 
+  /**
+   * Handle the selection of the contact, may also be a newly created
+   * contact. The function simply updates the contact in the state.
+   * 
+   * @param {*} contact
+   */
+  handleSelectContact = (contact) => {
+    console.log('[info] User selected contact', contact)
+    this.setState({
+      contact: contact
+    })
+    this.props.navigation.navigate('Lookup')
+    return
+  }
+
   onClickFindContact = () => {
     console.log('[info] Lookup contact')
-    this.props.navigation.navigate('Find')
+    this.props.navigation.navigate('Find', {
+      onSelectContact: this.handleSelectContact,
+    })
     return
   }
 
   contact = () => {
     if(this.state.contact) {
-      let name = `${this.state.contact.firstName} ${this.state.contact.lastName}`
+      let name = `${this.state.contact.givenName} ${this.state.contact.familyName}`
       return (
         <Text>{name}</Text>
       )

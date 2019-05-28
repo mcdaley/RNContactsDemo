@@ -102,9 +102,19 @@ class SearchScreen extends Component {
    */
   onClickContact = (contact) => {
     console.log('[INFO] Selected contact id= ', contact.givenName)
-    this.openContactPicker(contact)
+    //* this.openContactPicker(contact)
+    let handleSelectContact = this.props.navigation.getParam('onSelectContact')
+    handleSelectContact(contact) 
+    return
   }
 
+  /**
+   * ON-HOlD: 05/28/2019
+   *  - DEPRECATED UNTIL I CAN FIGURE OUT BUG THAT CALLING THE IOS
+   *    CONTACT SCREEN FREEZES ALL OF THE TEXT-INPUT FORMS.
+   * 
+   * Opens the contact picker for the selected contact
+   */
   openContactPicker = (contact) => {
     console.log('[INFO] Open contact form for ', contact)
     Contacts.openExistingContact(contact, (err, modifiedContact) => {

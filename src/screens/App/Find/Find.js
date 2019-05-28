@@ -80,22 +80,9 @@ class FindScreen extends Component {
    */
   onClickContact = (contact) => {
     console.log('[INFO] Selected contact id= ', contact.givenName)
-    this.openContactPicker(contact)
-  }
-
-  openContactPicker = (contact) => {
-    console.log('[INFO] Open contact form for ', contact)
-    Contacts.openExistingContact(contact, (err, modifiedContact) => {
-      if(err) {
-        console.warn('[ERROR] Failed to open contact form= ', err)
-      }
-      else {
-        if(modifiedContact) {
-          console.log('[INFO]: Updated contact= ', modifiedContact)
-          this.handleUpdateContact(modifiedContact)
-        }
-      }
-    })
+    let handleSelectContact = this.props.navigation.getParam('onSelectContact')
+    handleSelectContact(contact)
+    return
   }
 
   handleUpdateContact(contact) {
