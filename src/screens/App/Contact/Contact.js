@@ -8,6 +8,7 @@ import {
 import {
   Text, 
   Input,
+  Button,
 }                             from 'react-native-elements'
 
 import styles                 from './styles'
@@ -17,21 +18,21 @@ class ContactScreen extends Component {
     super(props)
 
     this.state = {
-      firstName:  '',
-      lastName:   '',
-      company:    '',
+      givenName:    '',
+      familyName:   '',
+      company:      '',
     }
   }
 
-  onChangeFirstName = (text) => {
+  onChangeGivenName = (text) => {
     this.setState({
-      firstName: text,
+      givenName: text,
     })
   }
 
-  onChangeLastName = (text) => {
+  onChangeFamilyName = (text) => {
     this.setState({
-      lastName: text,
+      familyName: text,
     })
   }
 
@@ -41,25 +42,45 @@ class ContactScreen extends Component {
     })
   }
 
+  /**
+   * Save the contact
+   */
+  onSaveContact = () => {
+    console.log('[info] Validate form fields and save contact')
+    contact = {
+      givenName:  this.state.givenName,
+      familyName: this.state.familyName,
+      company:    this.state.company,
+    }
+
+    let onSaveContact = this.props.navigation.getParam('onSaveContact')
+    onSaveContact(contact)
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.headerOne}>New Contact</Text>
         <Input
           placeholder   = 'First Name'
-          value         = {this.state.firstName}
-          onChangeText  = { this.onChangeFirstName}
+          value         = {this.state.givenName}
+          onChangeText  = { this.onChangeGivenName}
         />
         <Input
           placeholder   = 'Last Name'
-          value         = {this.state.lastName}
-          onChangeText  = { this.onChangeLastName}
+          value         = {this.state.familyName}
+          onChangeText  = { this.onChangeFamilyName}
         />
         <Input
           placeholder   = 'Company'
           value         = {this.state.company}
           onChangeText  = { this.onChangeCompany}
         />
+        <Button
+          title   = 'Save Contact'
+          onPress = {this.onSaveContact}
+        />
+
       </View>
     )
   }

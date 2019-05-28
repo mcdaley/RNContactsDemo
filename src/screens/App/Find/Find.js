@@ -75,29 +75,13 @@ class FindScreen extends Component {
   }
 
   /**
-   * Navigate to the contact details page and open the phones addContact
-   * form.
+   * Return the selected contact to the Lookup form
    */
   onClickContact = (contact) => {
-    console.log('[INFO] Selected contact id= ', contact.givenName)
+    console.log('[INFO] Selected contact= ', contact)
     let handleSelectContact = this.props.navigation.getParam('onSelectContact')
     handleSelectContact(contact)
     return
-  }
-
-  handleUpdateContact(contact) {
-    console.log('[INFO] Handle the contact update= ', contact)
-    let contacts = this.state.contacts.map( (person) => {
-      if(person.recordID !== contact.recordID) {
-        return person
-      }
-      else {
-        return contact
-      }
-    })
-    this.setState({
-      contacts,
-    })
   }
 
   /**
@@ -105,7 +89,33 @@ class FindScreen extends Component {
    */
   onClickCreateContact = () => {
     console.log('[INFO] Create a new contact')
-    this.props.navigation.navigate('Contact')
+    this.props.navigation.navigate('Contact', {
+      onSaveContact: this.handleAddContact,
+    })
+  }
+
+  /**
+   * Save the contact on the user's phone and return contact to the 
+   * Lookup screen
+   */
+  handleAddContact = (contact) => {
+    console.log('[info] Save the contact, contact')
+    this._saveContact(contact)
+    let handleSelectContact = this.props.navigation.getParam('onSelectContact')
+    handleSelectContact(contact)
+  }
+
+  _saveContact = (concat) => {
+    Contacts.addContact(contact, (err) => {
+      if(err) {
+        console.log('[error] Failed to save contact= ', err)
+      }
+      else {
+        this.setState({
+          concats: this.state.contacts.concat(concat)
+        })
+      }
+    })
   }
 
   /**
