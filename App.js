@@ -17,6 +17,8 @@ import HomeScreen           from './src/screens/app/Home/Home'
 import SearchScreen         from './src/screens/app/Search/Search'
 import DetailsScreen        from './src/screens/app/Details/Details'
 import ListScreen           from './src/screens/app/List/List'
+import FindScreen           from './src/screens/app/Find/Find'
+import ContactScreen        from './src/screens/app/Contact/Contact'
 import SettingsScreen       from './src/screens/settings/Settings/Settings'
 import NotificationsScreen  from './src/screens/settings/Notifications/Notifications'
 import ProfileScreen        from './src/screens/settings/Profile/Profile'
@@ -30,6 +32,7 @@ import {
   headerFontWeight,
   appHeaderBackgroundColor,
   topicsHeaderBackgroundColor,
+  findHeaderBackgroundColor,
 }                           from './src/styles/index'
 
 /**
@@ -114,6 +117,29 @@ SearchStack.navigationOptions = ({navigation}) => {
   return { tabBarVisible }
 }
 
+const FindStack    = createStackNavigator(
+  {
+    Find:     FindScreen,
+    Contact:  ContactScreen,
+  },
+  {
+    defaultNavigationOptions: {
+      headerTintColor:  headerTextColor,
+      headerStyle:      { backgroundColor: findHeaderBackgroundColor },
+      headerTitleStyle: { fontWeight: headerFontWeight }
+    }
+  }
+)
+
+FindStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true
+  if(navigation.state.index > 0) {
+    tabBarVisible = false
+  }
+
+  return { tabBarVisible }
+}
+
 /**
  * Return the Tab icon for each bottom tab on the screen
  * 
@@ -131,6 +157,9 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
   else if(routeName === 'Search') {
     iconName = `ios-desktop`
   }
+  else if(routeName == 'Find') {
+    iconName = 'ios-search'
+  }
 
   // Return the icon component
   return <Icon name={iconName} size={24} color={tintColor} />
@@ -140,6 +169,7 @@ const TabNavigator  = createBottomTabNavigator(
   {
     Home:     { screen: HomeStack },
     Search:   { screen: SearchStack },
+    Find:     { screen: FindStack },
   },
   {
     defaultNavigationOptions: ({navigation}) => ({

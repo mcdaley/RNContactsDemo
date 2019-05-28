@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// src/screens/App/Search.js
+// src/screens/App/Find/Find.js
 //-----------------------------------------------------------------------------
 import React, { Component }   from 'react'
 import {
@@ -20,26 +20,14 @@ import Fuse                   from 'fuse.js'
 
 import styles                 from './styles'
 
-///////////////////////////////////////////////////////////////////////////////
-// BUG: 05/28/2019
-//  - AFTER I EITHER CREATE A NEW CONTACT OR EDIT A CONTACT USING THE IOS
-//    CONTACT FORM THEN ALL OF THE TEXT INPUTS IN THE APP FREEZE. THIS
-//    WORKS IN ANDROID.
-//
-//    I TRIED WRAPPING IN PROMISES, BUT THAT DID NOT WORK. IT LOOKS LIKE THE
-//    IOS CONTACTS API HAS CHANGED, BUT THE NPM PACKAGE HAS NOT BEEN UPDATES
-//    AS YOU CAN SEE THE SIMULATOR DISPLAY AND CONTACT-OVERVIEW SCREEN AND
-//    THEN GOES TO THE EDIT CONTACT SCREEN..
-///////////////////////////////////////////////////////////////////////////////
-
 /**
- * Search screen for the RNContactsDemo app. User can navigate to settings
+ * Find screen for the RNContactsDemo app. User can navigate to settings
  * by clicking on the gear icon.
  */
-class SearchScreen extends Component {
+class FindScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Search',
+      headerTitle: 'Find',
       headerLeft:  (
         <TouchableOpacity onPress = { () => navigation.navigate('UserSettings')}>
           <Icon name='ios-settings' style={styles.headerIcon} />
@@ -56,8 +44,9 @@ class SearchScreen extends Component {
     super(props)
 
     this.state = {
-      search:   '',
-      contacts: [],
+      search:           '',
+      selectedContact:  null,
+      contacts:         [],
     }
   }
 
@@ -140,21 +129,7 @@ class SearchScreen extends Component {
    */
   onClickCreateContact = () => {
     console.log('[INFO] Create a new contact')
-
-    Contacts.openContactForm({}, (err, contact) => {
-      if(err) {
-        console.log('[ERROR] Failed to create contact= ', err)
-        throw err
-      }
-      
-      // Update state if contact was saved.
-      if(contact) {
-        console.log('[INFO]: Created new contact= ', contact)
-        this.setState({
-          contacts: this.state.contacts.concat(contact)
-        })
-      }
-    })
+    this.props.navigation.navigate('Contact')
   }
 
   /**
@@ -280,5 +255,5 @@ class SearchScreen extends Component {
   }
 }
 
-// Export the SearchScreen
-export default SearchScreen
+// Export the FindScreen
+export default FindScreen

@@ -20,6 +20,7 @@ export const headerFontWeight = 'bold'
 export const authHeaderBackgroundColor    = '#845F4A'
 export const appHeaderBackgroundColor     = '#F4511E'
 export const topicsHeaderBackgroundColor  = '#6C8AB7'
+export const findHeaderBackgroundColor    = '#004445'
 
 /**
  * Standard Components

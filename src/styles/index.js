@@ -13,5 +13,6 @@ export {
   authHeaderBackgroundColor,
   appHeaderBackgroundColor,
   topicsHeaderBackgroundColor,
+  findHeaderBackgroundColor,
   headerOne,
 }   from './common'
